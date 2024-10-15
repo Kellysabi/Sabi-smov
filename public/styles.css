@@ -261,6 +261,7 @@ footer {
   }
 
   form {
+  
     width: 95%;
     padding: 20px;
   }
@@ -268,6 +269,9 @@ footer {
   .recipes {
     grid-template-columns: 1fr;
     row-gap: 40px;
+  }
+  .recipe:hover{
+    transform: scale(1.0);
   }
 
   header img {
