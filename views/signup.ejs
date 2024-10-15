@@ -1,0 +1,79 @@
+<%- include('partials/header'); -%>
+
+<form action="/signup">
+  <h2>Sign up</h2>
+  <label for="name">Name</label>
+  <input type="text" name="name" required pattern="[A-Za-z\s]+" title="Name should only contain letters and spaces." />
+  <label for="username">Username</label>
+  <input type="text" name="username" required pattern="[A-Za-z0-9_]+" title="Username should only contain letters, numbers, and underscores." />
+  <label for="email">Email</label>
+  <input type="email" name="email" required />
+  <div class="email error"></div>
+  <label for="password">Password</label>
+ <input type="password" name="password" required pattern="^(?=.*[A-Z])(?=.*[A-Za-z0-9])(?=.*[!@#$%^&*()_+\-=\[\]{}|;':,./?~\\]).{12,}$" title="Password must be at least 12 characters long, contain at least one uppercase letter, one letter or number, and one special character."/> 
+ <div class="password error"></div>
+  <button>Sign up</button>
+</form>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector('form');
+  const emailError = document.querySelector('.email.error');
+  const passwordError = document.querySelector('.password.error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // reset errors
+    emailError.textContent = '';
+    passwordError.textContent = '';
+
+    // get values
+    const name = form.name.value.trim();
+    const username = form.username.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password.value.trim();
+
+    // client-side validation
+    const namePattern = /^[A-Za-z\s]+$/;
+    const usernamePattern = /^[A-Za-z0-9_]+$/;
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[A-Za-z0-9])(?=.*[!@#$%^&*()_+\-=\[\]{}|;':,./?~\\]).{12,}$/;
+
+
+
+    if (!namePattern.test(name)) {
+      emailError.textContent = 'Invalid name format.';
+      return;
+    }
+    if (!usernamePattern.test(username)) {
+      emailError.textContent = 'Invalid username format.';
+      return;
+    }
+    if (!passwordPattern.test(password)) {
+      passwordError.textContent = 'Password must be at least 12 characters long, contain at least one uppercase letter or number, and one special character.';
+      return;
+    }
+
+    try {
+      const res = await fetch('/signup', { 
+        method: 'POST', 
+        body: JSON.stringify({ name, username, email, password }),
+        headers: {'Content-Type': 'application/json'}
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.errors) {
+        emailError.textContent = data.errors.email;
+        passwordError.textContent = data.errors.password;
+      }
+      if (data.user) {
+        location.assign('/');
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
+
+  });
+</script>

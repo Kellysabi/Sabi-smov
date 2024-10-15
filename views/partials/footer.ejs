@@ -1,0 +1,41 @@
+<footer>Copyright@2024 #DSP100, #Sabi~Tech, #Sabi~Smov, #harvoxx tech hub</footer>
+<script >// script.js
+ const loginButton = document.querySelector('.btn2');
+ const signupButton = document.querySelector('.btn1');
+const toggleSwitch = document.querySelector('#checkbox');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+    document.body.classList.add(currentTheme);
+
+    if (currentTheme === 'dark-mode') {
+        toggleSwitch.checked = true;
+    }
+}
+
+toggleSwitch.addEventListener('change', function (e) {
+    if (e.target.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light-mode');
+    }
+});
+
+   
+   loginButton.style.background ='';
+   signupButton.style.background ='';
+
+    loginButton.addEventListener('click', () => {
+        loginButton.style.backgroundColor = '#FEE996'
+    });
+
+    signupButton.addEventListener('click', () => {
+       
+        signupButton.style.backgroundColor = '#FEE996';
+    });
+    
+</script>
+</body>
+</html>

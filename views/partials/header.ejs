@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabi~Smov</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <nav>
+        <h1 class='funny'><a href="/">Sabi~Smov</a></h1>
+        <ul>
+            <% if (user) { %>
+                <li>Welcome, <%= user.email %></li>
+                <li><a href="/logout">Log out</a></li>
+            <% } else { %>
+                <li><a href="/login" class='btn2'>Log in</a></li>
+                <li><a href="/signup" class="btn1">Sign up</a></li>
+            <% } %>
+            <li>
+               
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+               
+            </li>
+        </ul>
+    </nav>
+    <script src="/script.js"></script>
+</body>
+</html>
