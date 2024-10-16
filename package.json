@@ -1,5 +1,5 @@
 {
-  "name": "node-express-jwt-auth",
+  "name": "fullauth",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -25,7 +25,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/iamshaunjp/node-express-jwt-auth/issues"
+    "url": "https://github.com/Kellysabi/evil.git"
   },
-  "homepage": "https://github.com/iamshaunjp/node-express-jwt-auth#readme"
+  "homepage": ""
 }

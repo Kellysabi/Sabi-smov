@@ -13,7 +13,13 @@
  <input type="password" name="password" required pattern="^(?=.*[A-Z])(?=.*[A-Za-z0-9])(?=.*[!@#$%^&*()_+\-=\[\]{}|;':,./?~\\]).{12,}$" title="Password must be at least 12 characters long, contain at least one uppercase letter, one letter or number, and one special character."/> 
  <div class="password error"></div>
   <button>Sign up</button>
+  <p>Already have an account? <a href="/login">Login</a></p>
 </form>
+<% if (typeof error !== 'undefined') { %>
+  <p class="error-message"><%= error %></p>
+<% } %>
+
+
 
 <%- include('partials/footer'); -%>
 
